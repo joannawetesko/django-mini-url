@@ -1,21 +1,32 @@
-from django.http import HttpResponse
-from django.shortcuts import redirect
-from .miniurl import encode_url, decode_url
+from django.http import Http404
+from django.shortcuts import render_to_response
+from django.views.generic import RedirectView
+from django.views.generic.edit import CreateView
+
+from .apps import MiniurlConfig
+from .models import URL
 
 
-def create_url(request, link):
-    if request.user.is_authenticated:
-        shortened_link = encode_url(link, request.user)
-        print(shortened_link)
-        return HttpResponse(shortened_link)
-    else:
-        return HttpResponse('unauthorized')
+class Main(CreateView):
+    template_name = 'main.html'
+    model = URL
+    fields = ['url']
+
+    def form_valid(self, form):
+        shortened_link = self.generate_short_link(form.cleaned_data.get('url'))
+        return render_to_response('success.html', {'shortened_link': shortened_link})
+
+    def generate_short_link(self, url):
+        shortened_link = MiniurlConfig.encoder.encode_url(url)
+        return f"{self.request.scheme}://{self.request.get_host()}{self.request.path}{shortened_link}"
 
 
-def redirect_url(link):
-    try:
-        real_link = decode_url(link)
-        # TODO: check all the permissions
-        return redirect(real_link)
-    except Exception as e:
-        return HttpResponse(e.args)
+class RedirectURL(RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        try:
+            self.url = MiniurlConfig.encoder.decode_url(self.kwargs.get('link'))
+        except IndexError:
+            raise Http404("This link does not exist.")
+        return super().get_redirect_url(*args, **kwargs)
