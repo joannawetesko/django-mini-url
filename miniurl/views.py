@@ -6,7 +6,7 @@ from .apps import MiniurlConfig
 from .models import URL
 
 
-class Main(CreateView):
+class MainView(CreateView):
     template_name = 'main.html'
     model = URL
     fields = ['url']
@@ -20,7 +20,7 @@ class Main(CreateView):
         return f"{self.request.scheme}://{self.request.get_host()}{self.request.path}{shortened_link}"
 
 
-class RedirectURL(RedirectView):
+class RedirectURLView(RedirectView):
     permanent = False
 
     def get_redirect_url(self, *args, **kwargs):
