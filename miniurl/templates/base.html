@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini URL</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/utils.js' %}"></script>
+</head>
+<body>
+    <div class="centered-div">
+    <h2 class="center">Mini URL | Your custom link shortener</h2>
+
+        <div class="row align-left">
+            <p>Mini URL allows to reduce long links from Facebook, YouTube, Twitter, Linked In and top sites on the Internet,<br/>
+                just paste the long URL and click the Shorten URL button.
+                On the next screen, copy the shortened URL and share it on websites, chat and e-mail.<br/>
+                Your shortened URLs can be used in publications, advertisements, blogs, forums, e-mails,
+                instant messages, and other locations.</p>
+        </div>
+
+        <div class="row">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Form</h1>
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create</button>
-</form>
-
-</body>
-</html>
+{% block content %}
+<div class="card-panel">
+    <div class="row">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="col s1"></div>
+            <div class="input-field col s8">
+                <input name="url" id="url" placeholder="Paste your link here" type="text">
+            </div>
+            <div class="col s2"><button class="btn waves-effect waves-light lowered-button" type="submit">Shorten
+                <i class="material-icons right">send</i></button>
+            </div>
+            <div class="col s1"></div>
+        </form>
+    </div>
+</div>
+{% endblock %}

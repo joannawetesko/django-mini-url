@@ -1,0 +1,36 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+html {
+    height: 100%;
+    display: grid;
+}
+
+body {
+    background-image: url("/static/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 100%;
+    color: white;
+    display: grid;
+}
+
+.centered-div {
+     margin: auto;
+}
+
+.card-panel {
+    margin-top: 20px;
+}
+
+.lowered-button {
+   margin-top: 26px;
+   margin-left: 0px;
+}
+
+.lowered-button-min {
+   margin-top: 8px;
+   margin-left: 0px;
+}

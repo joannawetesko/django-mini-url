@@ -1,13 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Your link:</h1>
-<p>{{ shortened_link }}</p>
+{% extends 'base.html' %}
 
-<a class="button" href="{{shortened_link}}">Go!</a>
-</body>
-</html>
+{% block content %}
+<div class="card-panel">
+    <div style="">
+    <div class="row">
+        <div class="col offset-s1">
+            <h5 class="black-text">Your shortened URL</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s1"></div>
+            <div class="col s5" style="border: 1px solid black;">
+                <div class="col s5">
+                    <p id="shortened_link" class="black-text"><strong>{{ shortened_link }}</strong></p>
+                </div>
+            </div>
+
+            <div class="col s5">
+                <button class="btn waves-effect waves-light lowered-button-min" onclick="copyToClipboard('#shortened_link')">Copy URL</button>
+                <a class="btn waves-effect waves-light lowered-button-min" href="{{shortened_link}}">Visit URL</a></div>
+            <div class="col s1"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
