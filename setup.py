@@ -9,7 +9,7 @@ setup(
     version='1.0',
     packages=['miniurl'],
     include_package_data=True,
-    install_requires=['hashids', 'django'],
+    install_requires=['hashids', 'django', 'gunicorn', 'django-heroku'],
     license='Apache 2.0 License',
     description='A Basic URL shortener for Django',
     long_description=README,
